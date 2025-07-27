@@ -1,4 +1,4 @@
-const unityInstance = UnityLoader.instantiate("unityContainer", "Build/build3.json");
+const unityInstance = UnityLoader.instantiate("unityContainer", "Build/build4.json");
 let WebXR;
 window.ARWT = {}
 
