@@ -139,7 +139,7 @@
         const buildUrl = "Build";
         const loaderUrl = buildUrl + "/e40682cd4a2e8826aa72fb3216daf773.loader.js";
         const config = {
-            dataUrl: buildUrl + "/bcafcb9ac5365f903bc3105d4dfb13b8.data.br",
+            dataUrl: buildUrl + "/4e8d01fc492d3a02b0b9604ef967a44e.data.br",
             frameworkUrl: buildUrl + "/e6c0cae6e17e8ec7ba5b072bd8dab77f.framework.js.br",
             codeUrl: buildUrl + "/a7adc2c4749474919035f02f9ea6f29d.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
@@ -149,7 +149,10 @@
         //Useful when used along with Filename as Hashes option
             cacheControl: function (url) {
             // typically includes: .data, .bundle, .zpt
-            ZAPPAR_WEBGL_CACHING   
+            if (url.match(/\.data/) || url.match(/\.bundle/) || url.match(/\.zpt/)) {
+             return "immutable";
+}
+   
             if (url.match(/\.mp4/) || url.match(/\.custom/) || url.match(/\.zbin/)) {
                 return "immutable";
             }   
@@ -181,7 +184,7 @@
         //script.onload = () => { CreateUnityLoader();   };
         document.body.appendChild(script);
 
-        ZAPPAR_PERMISSIONS_IMPLEMENTATION
+        window.zappar.permission_request_ui_promise().then(WaitForZCVLoad);
 
         function WaitForZCVLoad() {
             if (zappar.loaded()) {
